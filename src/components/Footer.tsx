@@ -34,7 +34,7 @@ const Footer = () => {
               <div className="p-2 bg-travel-gradient rounded-lg">
                 <Plane className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold">TravelAI</span>
+              <span className="text-xl font-bold">WanderVia</span>
             </div>
             <p className="text-gray-400 text-sm mb-6">
               Discover your perfect trip with AI-powered recommendations and connect with fellow travelers worldwide.
@@ -101,7 +101,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-wrap items-center space-x-6 text-sm text-gray-400">
-              <span>© {currentYear} TravelAI. All rights reserved.</span>
+              <span>© {currentYear} WanderVia. All rights reserved.</span>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
@@ -109,7 +109,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2 text-sm text-gray-400">
               <span>Made with</span>
               <Heart className="h-4 w-4 text-red-500 fill-current" />
-              <span>by the TravelAI Team</span>
+              <span>by the REDZ</span>
             </div>
           </div>
         </div>

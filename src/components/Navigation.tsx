@@ -17,7 +17,7 @@ const Navigation = () => {
             <div className="p-2 bg-travel-gradient rounded-lg">
               <Plane className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gradient">TravelAI</span>
+            <span className="text-xl font-bold text-gradient">WanderVia</span>
           </div>
 
           {/* Desktop Navigation */}

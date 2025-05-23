@@ -2,18 +2,19 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MapPin, Calendar, Users, Sparkles } from 'lucide-react';
+import { Search, MapPin, Calendar, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import CurrencyConverter from './CurrencyConverter';
 
 const HeroSection = () => {
   const [destination, setDestination] = useState('');
   const [aiPrompt, setAiPrompt] = useState('');
 
   const popularDestinations = [
-    { name: 'Bali, Indonesia', image: 'photo-1470071459604-3b5ec3a7fe05', season: 'Dry Season' },
-    { name: 'Tokyo, Japan', image: 'photo-1649972904349-6e44c42644a7', season: 'Cherry Blossom' },
-    { name: 'Santorini, Greece', image: 'photo-1500375592092-40eb2168fd21', season: 'Perfect Weather' },
-    { name: 'Iceland', image: 'photo-1488590528505-98d2b5aba04b', season: 'Northern Lights' }
+    { name: 'Goa, India', image: 'photo-1512343879784-a960bf40e7f2', season: 'Perfect Weather' },
+    { name: 'Kerala, India', image: 'photo-1602216056096-3b40cc0c9944', season: 'Monsoon Beauty' },
+    { name: 'Rajasthan, India', image: 'photo-1477413874982-55c091ac5ce4', season: 'Cool Season' },
+    { name: 'Himachal Pradesh, India', image: 'photo-1506905925346-21bda4d32df4', season: 'Mountain Escape' }
   ];
 
   return (
@@ -36,30 +37,38 @@ const HeroSection = () => {
             Let our AI create unforgettable journeys just for you.
           </p>
 
-          {/* AI Trip Planner Section */}
-          <div className="mb-16">
-            <div className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto border border-gray-100">
-              <div className="flex items-center justify-center mb-6">
-                <div className="p-3 bg-travel-gradient rounded-full mr-3">
-                  <Sparkles className="h-6 w-6 text-white" />
+          {/* Currency Converter and AI Trip Planner Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {/* Currency Converter */}
+            <div className="lg:col-span-1 flex justify-center">
+              <CurrencyConverter />
+            </div>
+
+            {/* AI Trip Planner Section */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <div className="flex items-center justify-center mb-6">
+                  <div className="p-3 bg-travel-gradient rounded-full mr-3">
+                    <Sparkles className="h-6 w-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-semibold text-gray-900">AI Trip Planner</h2>
                 </div>
-                <h2 className="text-2xl font-semibold text-gray-900">AI Trip Planner</h2>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="Tell us your dream trip... (e.g., 'A romantic getaway in Europe for 7 days under $3000')"
-                    value={aiPrompt}
-                    onChange={(e) => setAiPrompt(e.target.value)}
-                    className="w-full h-14 text-lg pl-12 pr-4 border-2 border-gray-200 focus:border-travel-blue rounded-xl"
-                  />
-                  <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-travel-blue" />
+                
+                <div className="space-y-4">
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="Tell us your dream trip... (e.g., 'A spiritual journey in Rishikesh for 5 days under ₹25,000')"
+                      value={aiPrompt}
+                      onChange={(e) => setAiPrompt(e.target.value)}
+                      className="w-full h-14 text-lg pl-12 pr-4 border-2 border-gray-200 focus:border-travel-blue rounded-xl"
+                    />
+                    <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-travel-blue" />
+                  </div>
+                  <Button className="w-full h-14 text-lg bg-travel-gradient hover:opacity-90 text-white rounded-xl">
+                    Create My AI Itinerary
+                  </Button>
                 </div>
-                <Button className="w-full h-14 text-lg bg-travel-gradient hover:opacity-90 text-white rounded-xl">
-                  Create My AI Itinerary
-                </Button>
               </div>
             </div>
           </div>
@@ -95,9 +104,9 @@ const HeroSection = () => {
             </Card>
           </div>
 
-          {/* Popular Destinations */}
+          {/* Popular Indian Destinations */}
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8">Trending Destinations This Season</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8">Trending Indian Destinations This Season</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {popularDestinations.map((dest, index) => (
                 <Card key={index} className="overflow-hidden travel-card-hover group cursor-pointer">
