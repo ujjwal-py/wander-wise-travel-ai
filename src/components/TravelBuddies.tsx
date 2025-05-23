@@ -8,35 +8,39 @@ import { Users, MapPin, Calendar, Heart, Zap, Coffee } from 'lucide-react';
 const TravelBuddies = () => {
   const [destination, setDestination] = useState('');
   const [travelDate, setTravelDate] = useState('');
+  const [showMatch, setShowMatch] = useState(false);
 
-  const mockBuddies = [
+  const buddies = [
     {
-      name: 'Roopali',
-      destination: 'Bali, Indonesia',
-      dates: 'Mar 15-22, 2024',
-      style: 'Adventure & Culture',
+      name: 'Akansha',
+      destination: destination || 'Any Destination',
+      dates: travelDate ? new Date(travelDate).toLocaleDateString() : 'Flexible Dates',
+      style: 'Explorer & Foodie',
+      matchPercentage: 98,
+      interests: ['Local Food', 'Culture', 'Photography'],
+      age: '27',
+      initial: 'A',
+    },
+    {
+      name: 'Rohan Garg',
+      destination: destination || 'Any Destination',
+      dates: travelDate ? new Date(travelDate).toLocaleDateString() : 'Flexible Dates',
+      style: 'Adventure & Tech',
       matchPercentage: 94,
-      interests: ['Hiking', 'Local Food', 'Photography'],
-      age: '28'
+      interests: ['Hiking', 'Coding', 'Music'],
+      age: '29',
+      initial: 'R',
     },
     {
-      name: 'Nitin Gaur',
-      destination: 'Tokyo, Japan',
-      dates: 'Apr 5-12, 2024',
-      style: 'Budget Backpacking',
-      matchPercentage: 87,
-      interests: ['Street Food', 'Museums', 'Nightlife'],
-      age: '25'
+      name: 'Solani Mehta',
+      destination: destination || 'Any Destination',
+      dates: travelDate ? new Date(travelDate).toLocaleDateString() : 'Flexible Dates',
+      style: 'Culture & Wellness',
+      matchPercentage: 92,
+      interests: ['Yoga', 'Art', 'Local Food'],
+      age: '26',
+      initial: 'S',
     },
-    {
-      name: 'Maya Pandey',
-      destination: 'Santorini, Greece',
-      dates: 'May 20-27, 2024',
-      style: 'Luxury Relaxation',
-      matchPercentage: 91,
-      interests: ['Wine Tasting', 'Sunset Views', 'Spa'],
-      age: '32'
-    }
   ];
 
   const getStyleIcon = (style: string) => {
@@ -84,7 +88,10 @@ const TravelBuddies = () => {
               />
               <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             </div>
-            <Button className="h-12 bg-travel-gradient hover:opacity-90 text-white">
+            <Button
+              className="h-12 bg-travel-gradient hover:opacity-90 text-white"
+              onClick={() => setShowMatch(true)}
+            >
               Find Matches
             </Button>
           </div>
@@ -93,67 +100,62 @@ const TravelBuddies = () => {
           </p>
         </Card>
 
-        {/* Mock Results */}
-        <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Your AI-Matched Travel Buddies</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockBuddies.map((buddy, index) => {
-              const StyleIcon = getStyleIcon(buddy.style);
-              return (
-                <Card key={index} className="p-6 travel-card-hover group">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-travel-gradient rounded-full flex items-center justify-center text-white font-semibold">
-                        {buddy.name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{buddy.name}</h4>
-                        <p className="text-sm text-gray-500">Age {buddy.age}</p>
-                      </div>
+        {/* Demo AI Match Results */}
+        {showMatch && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mb-12 animate-fade-in">
+            {buddies.map((buddy, idx) => (
+              <Card key={idx} className="p-8 max-w-md w-full travel-card-hover mx-auto">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-14 h-14 bg-travel-gradient rounded-full flex items-center justify-center text-white font-semibold text-2xl">
+                      {buddy.initial}
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-travel-emerald">{buddy.matchPercentage}%</div>
-                      <div className="text-xs text-gray-500">Match</div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg">{buddy.name}</h4>
+                      <p className="text-sm text-gray-500">Age {buddy.age}</p>
                     </div>
                   </div>
-
-                  <div className="space-y-3 mb-4">
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <MapPin className="h-4 w-4 text-travel-blue" />
-                      <span>{buddy.destination}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <Calendar className="h-4 w-4 text-travel-blue" />
-                      <span>{buddy.dates}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <StyleIcon className="h-4 w-4 text-travel-blue" />
-                      <span>{buddy.style}</span>
-                    </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-travel-emerald">{buddy.matchPercentage}%</div>
+                    <div className="text-xs text-gray-500">Match</div>
                   </div>
-
-                  <div className="mb-4">
-                    <p className="text-xs text-gray-500 mb-2">Shared Interests:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {buddy.interests.map((interest, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-1 bg-travel-blue/10 text-travel-blue text-xs rounded-full"
-                        >
-                          {interest}
-                        </span>
-                      ))}
-                    </div>
+                </div>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center space-x-2 text-sm text-gray-600">
+                    <MapPin className="h-4 w-4 text-travel-blue" />
+                    <span>{buddy.destination}</span>
                   </div>
-
-                  <Button className="w-full bg-travel-gradient hover:opacity-90 text-white">
-                    Send Match Request
-                  </Button>
-                </Card>
-              );
-            })}
+                  <div className="flex items-center space-x-2 text-sm text-gray-600">
+                    <Calendar className="h-4 w-4 text-travel-blue" />
+                    <span>{buddy.dates}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-sm text-gray-600">
+                    <Heart className="h-4 w-4 text-travel-blue" />
+                    <span>{buddy.style}</span>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <p className="text-xs text-gray-500 mb-2">Shared Interests:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {buddy.interests.map((interest, idx2) => (
+                      <span
+                        key={idx2}
+                        className="px-2 py-1 bg-travel-blue/10 text-travel-blue text-xs rounded-full"
+                      >
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <Button className="flex-1 bg-travel-gradient hover:opacity-90 text-white">Connect</Button>
+                  <Button variant="outline" className="flex-1">View Profile</Button>
+                  <Button variant="ghost" className="flex-1">Send Message</Button>
+                </div>
+              </Card>
+            ))}
           </div>
-        </div>
+        )}
 
         {/* How It Works */}
         <div className="mt-20 text-center">
