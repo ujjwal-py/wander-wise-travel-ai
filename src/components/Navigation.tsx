@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Plane, Brain, Users, Search, Home } from 'lucide-react';
+import CurrencySelector from './CurrencySelector';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,6 +43,7 @@ const Navigation = () => {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <CurrencySelector />
             <Button variant="ghost" className="text-gray-700 hover:text-travel-blue">
               Become a Host
             </Button>
@@ -78,6 +80,10 @@ const Navigation = () => {
               <span>Explore</span>
             </a>
             <div className="px-4 space-y-2">
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-700">Currency:</span>
+                <CurrencySelector />
+              </div>
               <Button variant="outline" className="w-full">
                 Become a Host
               </Button>
