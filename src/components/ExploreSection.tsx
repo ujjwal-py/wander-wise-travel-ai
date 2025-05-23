@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { Search, Filter, MapPin, Star, Clock, DollarSign, Map, List } from 'lucide-react';
+import { Search, Filter, MapPin, Star, Clock, Map, List } from 'lucide-react';
+import { useCurrency } from '@/contexts/CurrencyContext';
 
 const ExploreSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+  const { convertPrice } = useCurrency();
 
   const mockProperties = [
     {
@@ -172,7 +174,7 @@ const ExploreSection = () => {
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="font-semibold text-gray-900 text-lg">{property.title}</h3>
                   <div className="text-right">
-                    <div className="font-bold text-gray-900">${property.price}</div>
+                    <div className="font-bold text-gray-900">{convertPrice(property.price)}</div>
                     <div className="text-sm text-gray-500">per night</div>
                   </div>
                 </div>

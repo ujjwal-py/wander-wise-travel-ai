@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, MapPin, Calendar, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import CurrencyConverter from './CurrencyConverter';
 
 const HeroSection = () => {
   const [destination, setDestination] = useState('');
@@ -37,38 +36,30 @@ const HeroSection = () => {
             Let our AI create unforgettable journeys just for you.
           </p>
 
-          {/* Currency Converter and AI Trip Planner Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {/* Currency Converter */}
-            <div className="lg:col-span-1 flex justify-center">
-              <CurrencyConverter />
-            </div>
-
-            {/* AI Trip Planner Section */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                <div className="flex items-center justify-center mb-6">
-                  <div className="p-3 bg-travel-gradient rounded-full mr-3">
-                    <Sparkles className="h-6 w-6 text-white" />
-                  </div>
-                  <h2 className="text-2xl font-semibold text-gray-900">AI Trip Planner</h2>
+          {/* AI Trip Planner Section */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+              <div className="flex items-center justify-center mb-6">
+                <div className="p-3 bg-travel-gradient rounded-full mr-3">
+                  <Sparkles className="h-6 w-6 text-white" />
                 </div>
-                
-                <div className="space-y-4">
-                  <div className="relative">
-                    <Input
-                      type="text"
-                      placeholder="Tell us your dream trip... (e.g., 'A spiritual journey in Rishikesh for 5 days under ₹25,000')"
-                      value={aiPrompt}
-                      onChange={(e) => setAiPrompt(e.target.value)}
-                      className="w-full h-14 text-lg pl-12 pr-4 border-2 border-gray-200 focus:border-travel-blue rounded-xl"
-                    />
-                    <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-travel-blue" />
-                  </div>
-                  <Button className="w-full h-14 text-lg bg-travel-gradient hover:opacity-90 text-white rounded-xl">
-                    Create My AI Itinerary
-                  </Button>
+                <h2 className="text-2xl font-semibold text-gray-900">AI Trip Planner</h2>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="Tell us your dream trip... (e.g., 'A spiritual journey in Rishikesh for 5 days under ₹25,000')"
+                    value={aiPrompt}
+                    onChange={(e) => setAiPrompt(e.target.value)}
+                    className="w-full h-14 text-lg pl-12 pr-4 border-2 border-gray-200 focus:border-travel-blue rounded-xl"
+                  />
+                  <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-travel-blue" />
                 </div>
+                <Button className="w-full h-14 text-lg bg-travel-gradient hover:opacity-90 text-white rounded-xl">
+                  Create My AI Itinerary
+                </Button>
               </div>
             </div>
           </div>
